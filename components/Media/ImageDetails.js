@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
-import MediaForm from "./MediaForm";
 import { getFormattedDate } from "@/utils/getFormattedDate";
+import Image from "next/image";
+import { useRef, useState } from "react";
 import { ScrollArea } from "../ui/scroll-area";
+import MediaForm from "./MediaForm";
 
 function ImageDetails({ selectedImage }) {
   const imageRef = useRef();
@@ -22,12 +23,15 @@ function ImageDetails({ selectedImage }) {
         <p className="text-[20px] font-medium text-gray-600">Image Details</p>
         <div className="mt-3 flex items-center gap-5">
           <div className="max-w-[200px] 2xl:max-w-[320px] max-h-[380px] overflow-hidden">
-            <img
+            <Image
               key={selectedImage._id}
               ref={imageRef}
               src={selectedImage.image.url}
               alt={selectedImage.altText}
+              width={200}
+              height={200}
               onLoad={handleImageLoad}
+              className="w-full h-auto"
             />
           </div>
 

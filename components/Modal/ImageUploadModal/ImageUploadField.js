@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { toast } from "sonner";
-import useTheme from "@/hooks/useTheme";
 import { IconCloudArrow } from "@/components/Icons";
 import { Spinner } from "@/components/Loading/Spinner";
+import {
+    CLOUDINARY_CLOUD_NAME,
+    CLOUDINARY_FOLDER,
+    CLOUDINARY_UPLOAD_PRESET,
+} from "@/config";
+import useTheme from "@/hooks/useTheme";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import ImageSubmitForm from "./ImageSubmitForm";
 import LogoSubmit from "./LogoSubmit";
-import {
-  CLOUDINARY_CLOUD_NAME,
-  CLOUDINARY_FOLDER,
-  CLOUDINARY_UPLOAD_PRESET,
-} from "@/config";
 
 function ImageUploadField({
   imageUploading,
@@ -32,7 +32,7 @@ function ImageUploadField({
 
   const imageMaxSize = 500;
 
-  const handleImageUpload = async () => {
+  const handleImageUpload = useCallback(async () => {
     if (!image) return;
 
     if (image.size > imageMaxSize * 1024) {
@@ -80,11 +80,11 @@ function ImageUploadField({
     }
 
     setImageUploading(false);
-  };
+  }, [image, imageMaxSize, setImageUploading, setImageUploaded, setShowImageModal]);
 
   useEffect(() => {
     image && handleImageUpload();
-  }, [image]);
+  }, [image, handleImageUpload]);
 
   const handleImageChange = async (e) => {
     if (!e.target.files || e.target.files.length === 0) {

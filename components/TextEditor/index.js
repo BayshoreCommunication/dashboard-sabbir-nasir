@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
-import StarterKit from '@tiptap/starter-kit';
-import { EditorContent, useEditor } from '@tiptap/react';
-import ListItem from '@tiptap/extension-list-item';
-import TextStyle from '@tiptap/extension-text-style';
-import TextAlign from '@tiptap/extension-text-align';
-import Underline from '@tiptap/extension-underline';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
-import Toolbar from './Toolbar';
-import ImageResize from 'tiptap-extension-resize-image';
+import ListItem from '@tiptap/extension-list-item';
+import TextAlign from '@tiptap/extension-text-align';
+import TextStyle from '@tiptap/extension-text-style';
+import Underline from '@tiptap/extension-underline';
 import Youtube from '@tiptap/extension-youtube';
+import { EditorContent, useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import { useEffect } from 'react';
+import ImageResize from 'tiptap-extension-resize-image';
+import Toolbar from './Toolbar';
 
 const TextEditor = ({ value, setValue }) => {
   const editor = useEditor({
@@ -79,7 +79,7 @@ const TextEditor = ({ value, setValue }) => {
     // to retrieve your editors content from somewhere
 
     editor?.commands.setContent(value);
-  }, [editor?.contentComponent]);
+  }, [editor?.commands, value]);
 
   return (
     <div>

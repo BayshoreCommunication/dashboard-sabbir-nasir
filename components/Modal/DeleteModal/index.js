@@ -1,4 +1,4 @@
-import Lottie from "lottie-react";
+import dynamic from "next/dynamic";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -7,6 +7,12 @@ import {
 import Button from "@/components/ui/Button";
 import deleteLottie from "@/public/lottie/delete-lottie.json";
 import { Spinner } from "@/components/Loading/Spinner";
+
+// Dynamically import Lottie with SSR disabled
+const Lottie = dynamic(() => import("lottie-react"), {
+  ssr: false,
+  loading: () => <div className="size-[116px] flex items-center justify-center">Loading...</div>
+});
 
 function DeleteModal({
   showDeleteModal,
