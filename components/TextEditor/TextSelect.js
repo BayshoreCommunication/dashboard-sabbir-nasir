@@ -10,52 +10,75 @@ function TextSelect({ editor }) {
     () => [
       {
         name: "Paragraph",
-        action: () => editor.chain().focus().setParagraph().run(),
-        isActive: editor.isActive("paragraph"),
+        action: () => editor?.chain().focus().setParagraph().run(),
+        isActive: editor?.isActive("paragraph") || false,
       },
       {
         name: "Heading 1",
-        action: () => editor.chain().focus().toggleHeading({ level: 1 }).run(),
-        isActive: editor.isActive("heading", { level: 1 }),
+        action: () => editor?.chain().focus().toggleHeading({ level: 1 }).run(),
+        isActive: editor?.isActive("heading", { level: 1 }) || false,
       },
       {
         name: "Heading 2",
-        action: () => editor.chain().focus().toggleHeading({ level: 2 }).run(),
-        isActive: editor.isActive("heading", { level: 2 }),
+        action: () => editor?.chain().focus().toggleHeading({ level: 2 }).run(),
+        isActive: editor?.isActive("heading", { level: 2 }) || false,
       },
       {
         name: "Heading 3",
-        action: () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
-        isActive: editor.isActive("heading", { level: 3 }),
+        action: () => editor?.chain().focus().toggleHeading({ level: 3 }).run(),
+        isActive: editor?.isActive("heading", { level: 3 }) || false,
       },
       {
         name: "Heading 4",
-        action: () => editor.chain().focus().toggleHeading({ level: 4 }).run(),
-        isActive: editor.isActive("heading", { level: 4 }),
+        action: () => editor?.chain().focus().toggleHeading({ level: 4 }).run(),
+        isActive: editor?.isActive("heading", { level: 4 }) || false,
       },
       {
         name: "Heading 5",
-        action: () => editor.chain().focus().toggleHeading({ level: 5 }).run(),
-        isActive: editor.isActive("heading", { level: 5 }),
+        action: () => editor?.chain().focus().toggleHeading({ level: 5 }).run(),
+        isActive: editor?.isActive("heading", { level: 5 }) || false,
       },
       {
         name: "Heading 6",
-        action: () => editor.chain().focus().toggleHeading({ level: 6 }).run(),
-        isActive: editor.isActive("heading", { level: 6 }),
+        action: () => editor?.chain().focus().toggleHeading({ level: 6 }).run(),
+        isActive: editor?.isActive("heading", { level: 6 }) || false,
       },
     ],
     [editor]
   );
 
   useEffect(() => {
-    editor.isActive("paragraph") && setSelectedOption("Paragraph");
-    editor.isActive("heading", { level: 1 }) && setSelectedOption("Heading 1");
-    editor.isActive("heading", { level: 2 }) && setSelectedOption("Heading 2");
-    editor.isActive("heading", { level: 3 }) && setSelectedOption("Heading 3");
-    editor.isActive("heading", { level: 4 }) && setSelectedOption("Heading 4");
-    editor.isActive("heading", { level: 5 }) && setSelectedOption("Heading 5");
-    editor.isActive("heading", { level: 6 }) && setSelectedOption("Heading 6");
-  }, [editor.state.selection, editor]);
+    if (!editor) return;
+
+    // Update selected option based on current editor state
+    if (editor.isActive("paragraph")) {
+      setSelectedOption("Paragraph");
+    } else if (editor.isActive("heading", { level: 1 })) {
+      setSelectedOption("Heading 1");
+    } else if (editor.isActive("heading", { level: 2 })) {
+      setSelectedOption("Heading 2");
+    } else if (editor.isActive("heading", { level: 3 })) {
+      setSelectedOption("Heading 3");
+    } else if (editor.isActive("heading", { level: 4 })) {
+      setSelectedOption("Heading 4");
+    } else if (editor.isActive("heading", { level: 5 })) {
+      setSelectedOption("Heading 5");
+    } else if (editor.isActive("heading", { level: 6 })) {
+      setSelectedOption("Heading 6");
+    }
+  }, [editor, editor?.state.selection]);
+
+  const handleOptionClick = (option) => {
+    if (editor && option.action) {
+      option.action();
+      setSelectedOption(option.name);
+      setToggle(false);
+    }
+  };
+
+  if (!editor) {
+    return null;
+  }
 
   return (
     <div ref={node} className="w-[130px] text-sm font-medium">
@@ -75,16 +98,12 @@ function TextSelect({ editor }) {
               <button
                 key={option.name}
                 type="button"
-                className={`w-full !pl-4 flex !justify-start  ${
+                className={`w-full !pl-4 flex !justify-start py-1 ${
                   option.isActive
                     ? "bg-gray-300 hover:!bg-gray-300"
                     : "hover:bg-gray-100"
                 }`}
-                onClick={() => {
-                  option.action();
-                  setSelectedOption(option.name);
-                  setToggle(false);
-                }}
+                onClick={() => handleOptionClick(option)}
               >
                 {option.name}
               </button>

@@ -7,7 +7,7 @@ import Underline from '@tiptap/extension-underline';
 import Youtube from '@tiptap/extension-youtube';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import ImageResize from 'tiptap-extension-resize-image';
 import Toolbar from './Toolbar';
 
@@ -56,7 +56,7 @@ const TextEditor = ({ value, setValue }) => {
       }),
     ],
 
-    content: ``,
+    content: value || '',
 
     editorProps: {
       attributes: {
@@ -67,25 +67,37 @@ const TextEditor = ({ value, setValue }) => {
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
       setValue(html);
+    },
 
-      // const html = editor.getHTML();
-      // const wrappedHtml = `<article className="ProseMirror">${html}</article>`;
-      // setValue(wrappedHtml);;
+    onSelectionUpdate: ({ editor }) => {
+      // This ensures the toolbar updates when selection changes
+      editor.view.updateState(editor.view.state);
     },
   });
 
-  useEffect(() => {
-    // this is just an example. do whatever you want to do here
-    // to retrieve your editors content from somewhere
+  const updateContent = useCallback(() => {
+    if (editor && value !== editor.getHTML()) {
+      editor.commands.setContent(value || '');
+    }
+  }, [editor, value]);
 
-    editor?.commands.setContent(value);
-  }, [editor?.commands, value]);
+  useEffect(() => {
+    updateContent();
+  }, [updateContent]);
+
+  if (!editor) {
+    return <div>Loading editor...</div>;
+  }
 
   return (
-    <div>
+    <div className="text-editor-container">
       <Toolbar editor={editor} />
-
-      <EditorContent editor={editor} required={true} />
+      <div className="editor-content-wrapper">
+        <EditorContent 
+          editor={editor} 
+          className="prose max-w-none focus:outline-none"
+        />
+      </div>
     </div>
   );
 };
