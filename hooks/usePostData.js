@@ -1,8 +1,8 @@
-import axios from "axios";
-import { toast } from "sonner";
-import { useSession } from "next-auth/react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { API_URL } from "@/config";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 function usePostData({ path, revalidate }) {
   const { data: session } = useSession();

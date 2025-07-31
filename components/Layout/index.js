@@ -1,9 +1,9 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import Sidebar from "./Sidebar";
-import { navLinks } from "./navLinks";
 import useGetData from "@/hooks/useGetData";
 import { useSiteInfo } from "@/lib/store";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import Sidebar from "./Sidebar";
+import { navLinks } from "./navLinks";
 
 function Layout({ children }) {
   const { pathname } = useRouter();

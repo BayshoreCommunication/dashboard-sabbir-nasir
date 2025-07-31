@@ -1,13 +1,13 @@
 import { IconCloudArrow } from "@/components/Icons";
 import { Spinner } from "@/components/Loading/Spinner";
 import {
-    CLOUDINARY_CLOUD_NAME,
-    CLOUDINARY_FOLDER,
-    CLOUDINARY_UPLOAD_PRESET,
+  CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_FOLDER,
+  CLOUDINARY_UPLOAD_PRESET,
 } from "@/config";
 import useTheme from "@/hooks/useTheme";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import ImageSubmitForm from "./ImageSubmitForm";
 import LogoSubmit from "./LogoSubmit";

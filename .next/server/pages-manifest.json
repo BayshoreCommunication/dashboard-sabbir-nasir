@@ -3,8 +3,8 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/blog": "pages/blog.js",
   "/api/google/data": "pages/api/google/data.js",
-  "/categories": "pages/categories.js"
+  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
+  "/settings": "pages/settings.js",
+  "/api/google/user": "pages/api/google/user.js"
 }

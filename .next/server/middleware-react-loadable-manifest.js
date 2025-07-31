@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{\"..\\\\components\\\\Modal\\\\DeleteModal\\\\index.js -> lottie-react\":{\"id\":\"..\\\\components\\\\Modal\\\\DeleteModal\\\\index.js -> lottie-react\",\"files\":[\"static/chunks/node_modules_lottie-react_build_index_umd_js.js\"]}}"
+self.__REACT_LOADABLE_MANIFEST="{}"

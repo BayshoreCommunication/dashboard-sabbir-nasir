@@ -1,10 +1,10 @@
 import {
-  IconBlog,
-  IconDashboard,
-  IconMedia,
-  IconMessage,
-  IconSettings,
-  IconCategories,
+    IconBlog,
+    IconCategories,
+    IconDashboard,
+    IconMedia,
+    IconMessage,
+    IconSettings,
 } from "../Icons";
 
 export const navLinks = [

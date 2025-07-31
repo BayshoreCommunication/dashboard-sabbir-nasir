@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Inter, Manrope } from "next/font/google";
-import { SessionProvider } from "next-auth/react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "sonner";
 import Layout from "@/components/Layout";
 import "@/styles/globals.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SessionProvider } from "next-auth/react";
+import { Inter, Manrope } from "next/font/google";
+import { useState } from "react";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });

@@ -1,6 +1,6 @@
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "@/config";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 function useGetDataPublic({ path }) {
   const url = `${API_URL}${path}`;
