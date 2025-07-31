@@ -1,1 +1,10 @@
-{"/_error":"pages/_error.js","/_app":"pages/_app.js","/_document":"pages/_document.js","/404":"pages/404.html","/api/google/auth":"pages/api/google/auth.js","/api/google/data":"pages/api/google/data.js","/api/hello":"pages/api/hello.js","/api/google/user":"pages/api/google/user.js","/blog/add-blog":"pages/blog/add-blog.html","/blog/edit-blog/[slug]":"pages/blog/edit-blog/[slug].html","/categories":"pages/categories.html","/blog":"pages/blog.html","/":"pages/index.html","/media":"pages/media.html","/message":"pages/message.html","/settings":"pages/settings.html","/sign-in":"pages/sign-in.html","/api/auth/[...nextauth]":"pages/api/auth/[...nextauth].js"}
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js",
+  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
+  "/blog": "pages/blog.js",
+  "/api/google/data": "pages/api/google/data.js",
+  "/categories": "pages/categories.js"
+}
